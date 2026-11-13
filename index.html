@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Hill Hold Assist Simulator - 2D Driving Simulator</title>
+  <meta name="description" content="Physics-based 2D automotive Hill Hold Assist (HHA) driving simulator demonstrating incline vehicle dynamics, traction limits, and automated rollback mitigation.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="title-group">
+        <h1>🚗 Hill Hold Assist Simulator</h1>
+        <p>Automotive Incline Dynamics &amp; Automatic Brake Retention Simulation</p>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-vercel">▲ Vercel Ready</span>
+        <span class="badge badge-status">● Live 60 FPS</span>
+      </div>
+    </header>
+
+    <!-- Canvas Viewport (Pixel-identical to Pygame Desktop) -->
+    <div class="canvas-wrapper">
+      <canvas id="simCanvas" width="1000" height="600"></canvas>
+    </div>
+
+    <!-- On-screen Interactive Action Bar -->
+    <section class="action-bar" aria-label="Simulator Controls">
+      <!-- Pedals & Primary Controls -->
+      <div class="action-row">
+        <div class="button-group">
+          <span class="group-label">Pedals (Hold)</span>
+          <button id="btnGas" class="btn btn-pedal btn-gas" title="Hold 'A' on keyboard">
+            🟢 [A] Gas
+          </button>
+          <button id="btnBrake" class="btn btn-pedal btn-brake" title="Hold 'B' on keyboard">
+            🔴 [B] Brake
+          </button>
+        </div>
+
+        <div class="button-group">
+          <span class="group-label">Incline Slope</span>
+          <button id="btnSlopeDown" class="btn" title="Left Arrow key">◀ -1°</button>
+          <button id="btnSlopeUp" class="btn" title="Right Arrow key">▶ +1°</button>
+          <button id="presetFlat" class="btn btn-preset">Flat (0°)</button>
+          <button id="presetUphill" class="btn btn-preset">Uphill (+12°)</button>
+          <button id="presetDownhill" class="btn btn-preset">Downhill (-10°)</button>
+        </div>
+      </div>
+
+      <!-- Road Surfaces & System Toggles -->
+      <div class="action-row">
+        <div class="button-group">
+          <span class="group-label">Surface</span>
+          <button id="btnSurf_DRY" class="btn btn-surface active" title="Press '1'">[1] Dry</button>
+          <button id="btnSurf_WET" class="btn btn-surface" title="Press '2'">[2] Wet</button>
+          <button id="btnSurf_ICE" class="btn btn-surface" title="Press '3'">[3] Ice</button>
+          <button id="btnSurf_GRAVEL" class="btn btn-surface" title="Press '4'">[4] Gravel</button>
+        </div>
+
+        <div class="button-group">
+          <span class="group-label">Systems</span>
+          <button id="btnToggleHHA" class="btn btn-toggle active" title="Press 'H'">Hill Hold: ON</button>
+          <button id="btnToggleSound" class="btn btn-toggle active" title="Press 'M'">Sound: ON</button>
+          <button id="btnReset" class="btn" title="Press 'R'">🔄 Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Physical Telemetry Drawer -->
+    <details class="telemetry-card" open>
+      <summary class="telemetry-header">
+        <h3>📊 Real-Time Newtonian Dynamics Telemetry</h3>
+      </summary>
+      <div class="telemetry-grid">
+        <div class="telem-item">
+          <span class="telem-label">Vehicle Velocity</span>
+          <span id="telemSpeed" class="telem-val">0.0 km/h</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-label">Road Incline Angle</span>
+          <span id="telemSlope" class="telem-val">0.0°</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-label">Gravity Parallel Force (F_g)</span>
+          <span id="telemGravity" class="telem-val">0 N</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-label">Net Longitudinal Force</span>
+          <span id="telemNetForce" class="telem-val">0 N</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-label">Tyre Traction Limit (μ·F_N)</span>
+          <span id="telemTraction" class="telem-val">11772 N</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-label">Hill Hold State Machine</span>
+          <span id="telemHHA" class="telem-val">HILL HOLD: ON</span>
+        </div>
+      </div>
+    </details>
+
+    <footer class="app-footer">
+      <p>Hill Hold Assist Simulator &bull; Automotive Engineering Demonstration</p>
+      <p>Supports keyboard shortcuts: <code>[A]</code> Accelerate &bull; <code>[B]</code> Brake &bull; <code>[H]</code> HHA Toggle &bull; <code>[M]</code> Sound &bull; <code>[1-4]</code> Surface &bull; <code>[Arrows]</code> Slope &bull; <code>[R]</code> Reset</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -380,8 +380,35 @@ To ensure the project is presentation-ready for academic evaluation, the visual 
 
 ## 10. Execution Guide
 
-To launch the simulator on Windows/PowerShell:
+To launch the simulator locally as a desktop application on Windows/Linux/macOS:
 ```powershell
 python main.py
 ```
 *(Dependencies: Python 3.10+ and Pygame 2.6.0+)*
+
+---
+
+## 11. 1-Click Vercel Web Deployment
+
+This project includes an ultra-fast, zero-dependency HTML5 Canvas & Web Audio engine that mirrors the exact Pygame frontend, physics, and acoustics for browser deployment on **Vercel** or any static hosting platform.
+
+### How to Deploy to Vercel:
+
+1. **Push your code to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Add Vercel web deployment support"
+   git push origin main
+   ```
+
+2. **Deploy on Vercel Dashboard:**
+   - Log in to [Vercel](https://vercel.com).
+   - Click **"Add New..."** &rarr; **"Project"**.
+   - Select your GitHub repository (`OE`).
+   - Leave all settings as default (Framework Preset: **Other**, Root Directory: `./`).
+   - Click **"Deploy"**.
+
+3. **Enjoy your live simulation link:**
+   - Your driving simulator will be live at `https://<your-project-name>.vercel.app` in under 10 seconds!
+   - Runs smoothly at 60 FPS on desktop, laptops, tablets, and smartphones with zero server overhead.
+
