@@ -270,3 +270,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Vercel Serverless Function entrypoint compatibility
+def app(environ, start_response):
+    status = "200 OK"
+    response_headers = [("Content-type", "text/html; charset=utf-8")]
+    start_response(status, response_headers)
+    try:
+        with open("index.html", "rb") as f:
+            return [f.read()]
+    except Exception:
+        return [b"Hill Hold Assist Simulator"]
+
+handler = app
+application = app
+
